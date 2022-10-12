@@ -1,0 +1,22 @@
+#!/usr/bin/make -f
+
+derives_from_ubuntu := $(shell (dpkg-vendor --derives-from Ubuntu && echo "yes") || echo "no")
+
+%:
+	dh $@ --with=pyppd
+
+override_dh_auto_install:
+	dh_auto_install -- INSTROOT=$(CURDIR)/debian/tmp
+
+override_dh_install:
+	dh_install
+	# Install the two PPDs and their second version counterpart.
+	mkdir -p $(CURDIR)/debian/printer-driver-m2300w/usr/share/ppd/m2300w
+	for n in 2300 2400; do \
+		mv $(CURDIR)/debian/tmp/usr/share/cups/model/Minolta/magicolor_$${n}W-m$${n}w.ppd $(CURDIR)/debian/printer-driver-m2300w/usr/share/ppd/m2300w/Minolta-magicolor_$${n}W-m$${n}w.ppd ; \
+		perl -p -e 's/Minolta/KONICA MINOLTA/g' $(CURDIR)/debian/printer-driver-m2300w/usr/share/ppd/m2300w/Minolta-magicolor_$${n}W-m$${n}w.ppd > $(CURDIR)/debian/printer-driver-m2300w/usr/share/ppd/m2300w/KONICA_MINOLTA-magicolor_$${n}W-m$${n}w.ppd ; \
+	done
+ifeq ($(derives_from_ubuntu),yes)
+	# Install the apport hook on Ubuntu and derivatives
+	install -D -m 644 debian/local/apport-hook.py $(CURDIR)/debian/printer-driver-m2300w/usr/share/apport/package-hooks/source_m2300w.py
+endif

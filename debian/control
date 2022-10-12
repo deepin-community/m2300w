@@ -1,0 +1,42 @@
+Source: m2300w
+Maintainer: Debian Printing Team <debian-printing@lists.debian.org>
+Uploaders:
+ Till Kamppeter <till.kamppeter@gmail.com>,
+Section: text
+Priority: optional
+Build-Depends:
+ cups-filters,
+ debhelper-compat (= 13),
+ ghostscript,
+ groff,
+ pyppd,
+Standards-Version: 4.6.0
+Vcs-Browser: https://salsa.debian.org/printing-team/m2300w
+Vcs-Git: https://salsa.debian.org/printing-team/m2300w.git
+Homepage: http://m2300w.sf.net/
+
+Package: printer-driver-m2300w
+Architecture: any
+Depends:
+ cups-filters | foomatic-filters,
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ cups-ppdc,
+Suggests:
+ psutils,
+Breaks:
+ m2300w (<< 0.51-5~),
+ m2300w-ppds,
+Replaces:
+ m2300w (<< 0.51-5~),
+ m2300w-ppds,
+Description: printer driver for Minolta magicolor 2300W/2400W color laser printers
+ The m2300w driver is a driver for the Konica Minolta magicolor 2300W and
+ 2400W color laser printers.
+ .
+ The driver is basically intended for being used in conjunction with
+ "foomatic" (see http://www.openprinting.org/foomatic.html), which
+ is a database-driven system for integrating free software printer
+ drivers with common spoolers under Unix, like CUPS, LPRng, LPD,
+ GNUlpr, PPR, PDQ, CPS, and direct printing.

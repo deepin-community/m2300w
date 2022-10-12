@@ -1,0 +1,237 @@
+m2300w (0.51-15) unstable; urgency=medium
+
+  * Update watch file format version to 4
+  * Run wrap-and-sort -baskt
+  * S-V: Update to 4.6.0 without changes needed
+  * Remove myself from Uploaders
+  * Bump debhelper compat to 13
+
+ -- Didier Raboud <odyx@debian.org>  Fri, 03 Sep 2021 16:54:17 +0200
+
+m2300w (0.51-14) unstable; urgency=medium
+
+  * Packaging cleanup:
+    - Trim trailing whitespace
+    - Move source package lintian overrides to debian/source
+    - Drop unnecessary dependency on dh-autoreconf
+    - Fix day-of-week for changelog entry 0.51-0ubuntu6
+    - Bump debhelper to 12
+    - Bump S-V to 4.5 without changes needed
+
+ -- Didier Raboud <odyx@debian.org>  Fri, 31 Jan 2020 17:26:38 +0100
+
+m2300w (0.51-13) unstable; urgency=medium
+
+  * Bump Standards-Version to 4.1.3 without changes needed
+  * Update Vcs-* fields for the move to salsa.d.o
+  * Initialize git-dpm
+
+ -- Didier Raboud <odyx@debian.org>  Sat, 10 Feb 2018 16:39:35 +0100
+
+m2300w (0.51-12) unstable; urgency=medium
+
+  * Move the repository from collab-maint to printing; update the VCS-* fields
+    accordingly
+
+ -- Didier Raboud <odyx@debian.org>  Thu, 06 Mar 2014 16:04:07 +0100
+
+m2300w (0.51-11) unstable; urgency=low
+
+  [ Didier Raboud ]
+  * Add cups-filters >= 1.0.42 as first alternative dependency to
+    foomatic-filters, also replace it in build-depends
+  * Drop m2300w transitional package which reached stable
+  * Bump Standards-Version to 3.9.5 without changes needed
+  * Add patch to make sure CPPFLAGS and LDFLAGS are dpkg-buildflags'
+  * Add patch to search foomatic-rip in cups filters, not in system
+    binaries
+  * Use dh-autoreconf to let the above patch apply to the build
+  * Add patch to fix bashism in m2300-wrapper (Closes: #690634)
+
+  [ Bart Martens ]
+  * Update debian/watch
+
+ -- Didier Raboud <odyx@debian.org>  Fri, 06 Dec 2013 23:59:37 +0100
+
+m2300w (0.51-10) unstable; urgency=low
+
+  * Rebuild against pyppd >= 1.0.1
+
+ -- Didier Raboud <odyx@debian.org>  Fri, 13 Sep 2013 12:48:28 +0200
+
+m2300w (0.51-9) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Didier Raboud <odyx@debian.org>  Sun, 19 May 2013 11:00:25 +0200
+
+m2300w (0.51-8) experimental; urgency=low
+
+  [ Till Kamppeter ]
+  * Removed unneeded build dependencies on Foomatic packages.
+
+  [ Didier Raboud ]
+  * Bump Standards-Version to 3.9.4 without changes needed.
+
+ -- Didier Raboud <odyx@debian.org>  Wed, 26 Sep 2012 14:30:41 +0200
+
+m2300w (0.51-7) unstable; urgency=low
+
+  * Bump Build-Dependency on pyppd to ensure that the compressed PPDs archive
+    is correctly named.
+
+ -- Didier Raboud <odyx@debian.org>  Mon, 24 Oct 2011 21:12:45 +0200
+
+m2300w (0.51-6) unstable; urgency=low
+
+  * Use << and not >> for the transitional relationships.
+
+ -- Didier Raboud <odyx@debian.org>  Fri, 21 Oct 2011 17:22:52 +0200
+
+m2300w (0.51-5) unstable; urgency=low
+
+  * Refactoring, action 1:
+    - rename m2300w to printer-driver-m2300w, add transitional package.
+
+  * Fix short description typo, thanks to Vincent Blut (Closes: 639180)
+  * Slightly rewrite descriptions.
+  * Bump debhelper compat to 9 for auto- buildflags.
+    - Bump debhelper B-D.
+    - Add source lintian override.
+  * Only recommend cups-ppdc.
+
+ -- Didier Raboud <odyx@debian.org>  Fri, 21 Oct 2011 17:04:16 +0200
+
+m2300w (0.51-4) unstable; urgency=low
+
+  [ Till Kamppeter ]
+  * Update the ppd-updater driver regexp.
+  * Added "Build-Conflicts: foomatic-db-compressed-ppds" to assure that the
+    Foomatic XML database is present during package build and not only the
+    compressed archive of the Foomatic PPD files.
+  * debian/patches/20_use_ghostscript_with_nointerpolate.dpatch: Added
+    "-dNOINTERPOLATE" to the Ghostscript command line. This makes the page
+    rendering by Ghostscript significantly faster.
+  * Add PPD files for the KONICA MINOLTA versions of the magicolor
+    2300W/2400W. (LP: #250583)
+
+ -- Didier Raboud <odyx@debian.org>  Wed, 24 Aug 2011 17:45:37 +0200
+
+m2300w (0.51-3) unstable; urgency=low
+
+  * Use the new dh_pyppd.
+    - Drop the explicit pyppd call.
+    - Install the PPDs before dh_pyppd.
+    - Version Build-Depends on pyppd.
+    - Drop the explicit depends due to pyppd usage.
+  * Drop the PPD-updater postinst and use CUPS' trigger instead.
+
+ -- Didier Raboud <odyx@debian.org>  Sat, 20 Aug 2011 13:49:51 +0200
+
+m2300w (0.51-2) unstable; urgency=low
+
+  * Compress PPDs using pyppd.
+
+ -- Didier Raboud <odyx@debian.org>  Fri, 17 Jun 2011 23:12:13 +0200
+
+m2300w (0.51-1) unstable; urgency=low
+
+  * Initial upload to Debian (Closes: #629906)
+    - Put under Debian Printing Team umbrella and add myself as Uploader.
+    - Start from Ubuntu packaging; thanks!
+
+  * Demote cups and cups-client to Recommends.
+  * Remove cups Build-Depends.
+  * Convert to source format 3.0 (quilt), convert dpatch'es to quilt patches.
+  * Move homepage URL to its proper field.
+  * Convert rules to dh7 tiny style; bump dh compat to 7 and B-D on debhelper
+    to >= 7.0.50~.
+  * Add misc:Depends to the binary package dependencies.
+  * Update debian/copyright; fix GPL version symlink.
+  * Use Breaks+Replaces instead of Provides+Replaces+Conflicts.
+  * Install the apport hook depending on the target distribution.
+  * Add Vcs-* fields.
+  * Bump Standards-Version to 3.9.2 without more changes needed.
+
+ -- Didier Raboud <odyx@debian.org>  Thu, 09 Jun 2011 15:25:04 +0200
+
+m2300w (0.51-0ubuntu10) natty; urgency=low
+
+  * debian/control: Fix build deps: gs → ghostscript.
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Mon, 24 Jan 2011 11:13:34 +0100
+
+m2300w (0.51-0ubuntu9) lucid; urgency=low
+
+  * rebuild rest of main for armel armv7/thumb2 optimization;
+    UbuntuSpec:mobile-lucid-arm-gcc-v7-thumb2
+
+ -- Alexander Sack <asac@ubuntu.com>  Sun, 07 Mar 2010 00:56:52 +0100
+
+m2300w (0.51-0ubuntu8) karmic; urgency=low
+
+  * debian/m2300w.postinst: Fixed "lpstat -r" check for the
+    auto update of PPDs of existing queues. "lpstat -r" exits always with
+    status 0, we must check the actual output. Call lpstat, lpadmin, and
+    cupsctl with "-h /var/run/cups/cups.sock" to avoid querying remote
+    servers set up in /etc/cups/client.conf, and asking for passwords.
+    Thanks to Martin-Éric Racine for tracking this down and the solution!
+    See Debian bug #543468. Use signal names instead of numbers for trap.
+    Quiesces a lintian bashism warning.
+
+  * debian/control: Added dependency on cups and cups-client, to assure
+    that automatic update of the PPDs of existing print queues.
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Fri, 18 Sep 2009 16:04:23 +0200
+
+m2300w (0.51-0ubuntu7) jaunty; urgency=low
+
+  * debian/m2300w.postinst: Silenced non-fatal error messages when
+    post-install script updates PPDs and there are PPDs not belonging to
+    a CUPS queue in /etc/cups/ppd/ (LP: #345866).
+
+  * debian/local/apport-hook.py, debian/rules: Added apport hook (LP: #338442).
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Thu, 26 Mar 2009 16:57:50 +0100
+
+m2300w (0.51-0ubuntu6) jaunty; urgency=low
+
+  * debian/m2300w.postinst: Added automatic updating of the PPD files of the
+    already existing CUPS queues which use this driver.
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 18 Feb 2008 10:57:50 +0100
+
+m2300w (0.51-0ubuntu5) intrepid; urgency=low
+
+  * debian/rules: Add "*cupsFilter" line to accept PDF input data to the PPDs
+  * debian/control: Require foomatic-filters 4.x, replaced "cupsys" by "cups".
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Wed, 13 Aug 2008 16:20:50 +0200
+
+m2300w (0.51-0ubuntu4) feisty; urgency=low
+
+  * 10_ppd_for_2400w_fails_cupstestppd.dpatch: PPD for the Minolta magicolor
+    2400W was not passing cupstestppd.
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Wed, 14 Mar 2007 19:30:00 +0000
+
+m2300w (0.51-0ubuntu3) feisty; urgency=low
+
+  * debian/control, debian/rules: Let PPDs go into the main package, drop
+    m2300w-ppds package; compressed the PPDs (see also LP#88224).
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Thu,  8 Mar 2007 14:30:00 +0000
+
+m2300w (0.51-0ubuntu2) feisty; urgency=low
+
+  * debian/control: Added "gs", "cupsys", "foomatic-db",
+    "foomatic-db-engine", and "foomatic-filters" to Build-Depends. They are
+    all needed by the ./configure script.
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Wed, 31 Jan 2007 12:00:00 +0000
+
+m2300w (0.51-0ubuntu1) feisty; urgency=low
+
+  * Initial Release.
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 15 Jan 2007 12:00:00 +0000

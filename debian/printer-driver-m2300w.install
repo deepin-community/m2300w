@@ -1,0 +1,3 @@
+debian/printer-driver-m2300w.ppd-updater usr/share/cups/ppd-updaters
+usr/bin
+usr/share/m2300w/0.51/psfiles/*
